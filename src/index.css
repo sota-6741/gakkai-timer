@@ -1,1 +1,28 @@
+@import "tailwindcss";
 
+@theme {
+  --color-background: #2a2a2a;
+  --color-foreground: #ffffff;
+  --color-secondary: #a1a1aa;
+  --color-accent: #eab308;
+  
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@layer base {
+  html, body, #root {
+    @apply h-full w-full overflow-hidden;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* Custom classes matching the intent of @docs */
+.timer-text {
+  font-size: 20rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
