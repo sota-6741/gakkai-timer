@@ -1,8 +1,16 @@
 import { TimerStatus } from "./timerStatus";
 
+/**
+ * Timer Domain Model
+ * 
+ * remainingSeconds: 残り秒数
+ * timerStatus: 現在のステータス
+ * progress: 進捗率 (0.0 〜 1.0)
+ */
 export interface Timer {
   readonly remainingSeconds: number;
   readonly timerStatus: TimerStatus;
+  readonly progress: number;
 }
 
 /** タイマースタート **/
@@ -29,7 +37,7 @@ export function pause(timer: Timer): Timer {
   };
 }
 
-/** 1秒経過させる **/
+/** 1秒経過させる (計算ロジックのみ) **/
 export function tick(timer: Timer): Timer {
   if (timer.timerStatus !== TimerStatus.RUNNING || timer.remainingSeconds <= 0) {
     return timer;
@@ -50,5 +58,6 @@ export function reset(initialSeconds: number): Timer {
   return {
     remainingSeconds: initialSeconds,
     timerStatus: TimerStatus.READY,
+    progress: 0, // 開始時は 0%
   };
 }
