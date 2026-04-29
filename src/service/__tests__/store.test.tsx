@@ -3,7 +3,6 @@
  */
 import { describe, it, expect, beforeEach } from "vitest";
 import { renderHook } from "@testing-library/react";
-import React from "react";
 import { Provider } from "../store";
 import { useStore } from "../storeContext";
 import { STORAGE_KEYS } from "../storagePersistence";
