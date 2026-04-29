@@ -35,8 +35,8 @@
   --content-gap: 4rem;
 }
 
-/* タブレットや小型PC向けの調整 */
-@media (max-width: 1024px) {
+/* 高さが十分でない場合の調整 (iMacや小型ノートPCなど) */
+@media (max-height: 800px) {
   :root {
     --timer-font-size: 16rem;
     --header-pt: 4rem;
@@ -45,39 +45,49 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-height: 700px) {
   :root {
-    --timer-font-size: 12rem;
+    --timer-font-size: 14rem;
     --header-pt: 3rem;
     --footer-pb: 3rem;
     --content-gap: 2rem;
   }
 }
 
-/* 画面の高さが低い場合（スマホ横持ちなど）の調整 */
 @media (max-height: 600px) {
   :root {
     --timer-font-size: 12rem;
-    --header-pt: 1.5rem;
-    --footer-pb: 1.5rem;
+    --header-pt: 2rem;
+    --footer-pb: 2rem;
     --content-gap: 1.5rem;
   }
 }
 
-@media (max-height: 450px) {
+/* 極端に高さが低い場合（スマホ横持ちなど）の調整 */
+@media (max-height: 480px) {
   :root {
     --timer-font-size: 8rem;
-    --header-pt: 0.75rem;
-    --footer-pb: 0.75rem;
-    --content-gap: 0.75rem;
+    --header-pt: 1rem;
+    --footer-pb: 1rem;
+    --content-gap: 1rem;
   }
 }
 
-@media (max-height: 320px) {
+@media (max-height: 360px) {
   :root {
     --timer-font-size: 6rem;
     --header-pt: 0.5rem;
     --footer-pb: 0.5rem;
     --content-gap: 0.5rem;
+  }
+}
+
+/* タブレットや小型PC向けの調整（幅基準） */
+@media (max-width: 1024px) and (min-height: 801px) {
+  :root {
+    --timer-font-size: 16rem;
+    --header-pt: 4rem;
+    --footer-pb: 4rem;
+    --content-gap: 3rem;
   }
 }
