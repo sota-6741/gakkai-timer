@@ -6,4 +6,9 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/gakkai-timer/",
+  // @ts-ignore
+  test: {
+    environment: "jsdom",
+    globals: true,
+  },
 });
