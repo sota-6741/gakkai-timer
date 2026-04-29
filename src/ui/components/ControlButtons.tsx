@@ -22,7 +22,7 @@ function IconButton({ icon: Icon, onClick, label, size = 32, primary = false }: 
     <button
       onClick={onClick}
       className={cn(
-        "p-4 sm:p-3 landscape:p-2 sm:landscape:p-3 transition-colors cursor-pointer outline-none",
+        "p-4 sm:p-3 landscape:p-1.5 sm:landscape:p-3 transition-colors cursor-pointer outline-none",
         primary ? "text-white hover:text-gray-200" : "text-gray-500 hover:text-gray-300"
       )}
       aria-label={label}
@@ -30,8 +30,10 @@ function IconButton({ icon: Icon, onClick, label, size = 32, primary = false }: 
       <Icon 
         size={size} 
         className={cn(
-          "landscape:w-6 sm:landscape:w-auto landscape:h-6 sm:landscape:h-auto",
-          primary ? "w-10 h-10 sm:w-10 sm:h-10" : "w-8 h-8 sm:w-8 sm:h-8"
+          "transition-all",
+          primary 
+            ? "w-10 h-10 landscape:w-7 sm:landscape:w-10 landscape:h-7 sm:landscape:h-10" 
+            : "w-8 h-8 landscape:w-5 sm:landscape:w-8 landscape:h-5 sm:landscape:h-8"
         )} 
       />
     </button>

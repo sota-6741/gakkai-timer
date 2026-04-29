@@ -60,7 +60,13 @@ function App() {
       </button>
 
       {/* Main Content Area */}
-      <main className="flex-1 relative flex flex-col items-center justify-between px-6 py-12 sm:px-24 sm:py-24 landscape:py-4 sm:landscape:py-24">
+      <main 
+        className="flex-1 relative flex flex-col items-center justify-between px-6 py-12 sm:px-24 sm:py-24"
+        style={{ 
+          paddingTop: 'var(--header-pt, inherit)', 
+          paddingBottom: 'var(--footer-pb, inherit)',
+        } as React.CSSProperties}
+      >
         
         {/* Background Timer - Centered in inset */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
@@ -68,18 +74,21 @@ function App() {
         </div>
 
         {/* Top Header - Speaker Info (Above Timer) */}
-        <header className="relative z-10 text-center max-w-full landscape:mt-2 sm:landscape:mt-0">
-          <h1 className="text-3xl sm:text-4xl text-white mb-2 sm:mb-4 tracking-tight font-semibold line-clamp-1 sm:line-clamp-2 landscape:text-xl sm:landscape:text-4xl">
+        <header className="relative z-10 text-center max-w-full">
+          <h1 className="text-3xl sm:text-4xl text-white mb-2 sm:mb-4 tracking-tight font-semibold line-clamp-1 sm:line-clamp-2">
             {currentSpeaker.name}
           </h1>
-          <p className="text-xl sm:text-2xl text-gray-400 tracking-wide font-medium line-clamp-1 sm:line-clamp-3 landscape:hidden sm:landscape:block landscape:text-base sm:landscape:text-2xl">
+          <p className="text-xl sm:text-2xl text-gray-400 tracking-wide font-medium line-clamp-1 sm:line-clamp-3 hidden min-[400px]:block">
             {currentSpeaker.title}
           </p>
         </header>
 
         {/* Bottom Area - Controls and Progress (Above Timer) */}
-        <footer className="relative z-10 w-full flex flex-col items-center gap-12 sm:gap-16 landscape:gap-4 sm:landscape:gap-16">
-          <div className="w-full max-w-6xl flex justify-center px-4 sm:px-0 landscape:max-w-3xl sm:landscape:max-w-6xl">
+        <footer 
+          className="relative z-10 w-full flex flex-col items-center"
+          style={{ gap: 'var(--content-gap)' } as React.CSSProperties}
+        >
+          <div className="w-full max-w-6xl flex justify-center px-4 sm:px-0">
             <BellProgressBar
               totalTime={bellConfig.third}
               currentTime={timer.remainingSeconds}

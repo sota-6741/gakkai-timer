@@ -26,3 +26,58 @@
   font-weight: 700;
   letter-spacing: -0.02em;
 }
+
+/* 画面の高さに基づく段階的な調整 */
+:root {
+  --timer-font-size: 20rem;
+  --header-pt: 6rem;
+  --footer-pb: 6rem;
+  --content-gap: 4rem;
+}
+
+/* タブレットや小型PC向けの調整 */
+@media (max-width: 1024px) {
+  :root {
+    --timer-font-size: 16rem;
+    --header-pt: 4rem;
+    --footer-pb: 4rem;
+    --content-gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --timer-font-size: 12rem;
+    --header-pt: 3rem;
+    --footer-pb: 3rem;
+    --content-gap: 2rem;
+  }
+}
+
+/* 画面の高さが低い場合（スマホ横持ちなど）の調整 */
+@media (max-height: 600px) {
+  :root {
+    --timer-font-size: 12rem;
+    --header-pt: 1.5rem;
+    --footer-pb: 1.5rem;
+    --content-gap: 1.5rem;
+  }
+}
+
+@media (max-height: 450px) {
+  :root {
+    --timer-font-size: 8rem;
+    --header-pt: 0.75rem;
+    --footer-pb: 0.75rem;
+    --content-gap: 0.75rem;
+  }
+}
+
+@media (max-height: 320px) {
+  :root {
+    --timer-font-size: 6rem;
+    --header-pt: 0.5rem;
+    --footer-pb: 0.5rem;
+    --content-gap: 0.5rem;
+  }
+}
