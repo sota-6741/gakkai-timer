@@ -27,7 +27,13 @@ function IconButton({ icon: Icon, onClick, label, size = 32, primary = false }: 
       )}
       aria-label={label}
     >
-      <Icon size={size} className="w-8 h-8 sm:w-auto sm:h-auto landscape:w-6 landscape:h-6" />
+      <Icon 
+        size={size} 
+        className={cn(
+          "landscape:w-6 landscape:h-6",
+          primary ? "w-10 h-10 sm:w-10 sm:h-10" : "w-8 h-8 sm:w-8 sm:h-8"
+        )} 
+      />
     </button>
   );
 }
