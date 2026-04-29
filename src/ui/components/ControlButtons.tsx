@@ -22,12 +22,12 @@ function IconButton({ icon: Icon, onClick, label, size = 32, primary = false }: 
     <button
       onClick={onClick}
       className={cn(
-        "p-4 sm:p-3 transition-colors cursor-pointer outline-none",
+        "p-4 sm:p-3 landscape:p-2 transition-colors cursor-pointer outline-none",
         primary ? "text-white hover:text-gray-200" : "text-gray-500 hover:text-gray-300"
       )}
       aria-label={label}
     >
-      <Icon size={size} className="w-8 h-8 sm:w-auto sm:h-auto" />
+      <Icon size={size} className="w-8 h-8 sm:w-auto sm:h-auto landscape:w-6 landscape:h-6" />
     </button>
   );
 }

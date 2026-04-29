@@ -60,7 +60,7 @@ function App() {
       </button>
 
       {/* Main Content Area */}
-      <main className="flex-1 relative flex flex-col items-center justify-between px-6 py-12 sm:px-24 sm:py-24">
+      <main className="flex-1 relative flex flex-col items-center justify-between px-6 py-12 sm:px-24 sm:py-24 landscape:py-4 landscape:sm:py-8">
         
         {/* Background Timer - Centered in inset */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
@@ -68,18 +68,18 @@ function App() {
         </div>
 
         {/* Top Header - Speaker Info (Above Timer) */}
-        <header className="relative z-10 text-center max-w-full">
-          <h1 className="text-2xl sm:text-4xl text-white mb-2 sm:mb-4 tracking-tight font-semibold line-clamp-2">
+        <header className="relative z-10 text-center max-w-full landscape:mt-2">
+          <h1 className="text-2xl sm:text-4xl text-white mb-2 sm:mb-4 tracking-tight font-semibold line-clamp-1 sm:line-clamp-2 landscape:text-xl landscape:sm:text-3xl">
             {currentSpeaker.name}
           </h1>
-          <p className="text-lg sm:text-2xl text-gray-400 tracking-wide font-medium line-clamp-3">
+          <p className="text-lg sm:text-2xl text-gray-400 tracking-wide font-medium line-clamp-1 sm:line-clamp-3 landscape:hidden sm:landscape:block landscape:text-base">
             {currentSpeaker.title}
           </p>
         </header>
 
         {/* Bottom Area - Controls and Progress (Above Timer) */}
-        <footer className="relative z-10 w-full flex flex-col items-center gap-8 sm:gap-16">
-          <div className="w-full max-w-6xl flex justify-center px-4 sm:px-0">
+        <footer className="relative z-10 w-full flex flex-col items-center gap-8 sm:gap-16 landscape:gap-4 landscape:sm:gap-8">
+          <div className="w-full max-w-6xl flex justify-center px-4 sm:px-0 landscape:max-w-3xl">
             <BellProgressBar
               totalTime={bellConfig.third}
               currentTime={timer.remainingSeconds}

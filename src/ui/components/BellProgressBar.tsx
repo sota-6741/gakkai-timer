@@ -19,9 +19,9 @@ function BellMarker({ position, label }: BellMarkerProps) {
       className="absolute top-0 flex flex-col items-center"
       style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
     >
-      <Bell size={14} className="sm:w-[18px] sm:h-[18px] text-yellow-500 fill-yellow-500" />
+      <Bell size={12} className="sm:w-[18px] sm:h-[18px] landscape:w-3 landscape:h-3 text-yellow-500 fill-yellow-500" />
       <div
-        className="mt-1 text-yellow-500/90 font-mono font-semibold text-[8px] sm:text-[10px] tracking-widest uppercase"
+        className="mt-0.5 text-yellow-500/90 font-mono font-semibold text-[7px] sm:text-[10px] landscape:text-[6px] tracking-widest uppercase"
       >
         {label}
       </div>
@@ -47,7 +47,7 @@ export function BellProgressBar({
 
   return (
     <div className="w-full max-w-5xl">
-      <div className="relative h-12 mb-4">
+      <div className="relative h-10 sm:h-12 mb-2 sm:mb-4 landscape:h-8 landscape:mb-1">
         {bells.map((bell) => (
           <BellMarker
             key={bell.label}
