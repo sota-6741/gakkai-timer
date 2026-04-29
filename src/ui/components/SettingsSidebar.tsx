@@ -79,8 +79,8 @@ export function SettingsSidebar({
       <div className="fixed inset-0 bg-black/30 z-40" onClick={onClose} />
 
       {/* Sidebar */}
-      <aside className="fixed top-0 right-0 h-full w-[400px] bg-white shadow-2xl z-50 flex flex-col">
-        <header className="px-7 py-5 border-b border-gray-200 flex items-center justify-between">
+      <aside className="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white shadow-2xl z-50 flex flex-col transition-all duration-300">
+        <header className="px-5 py-4 sm:px-7 sm:py-5 border-b border-gray-200 flex items-center justify-between">
           <h2 className="text-lg text-gray-900 font-medium tracking-tight">設定</h2>
           <button
             onClick={onClose}
@@ -92,7 +92,7 @@ export function SettingsSidebar({
         </header>
 
         <div className="flex-1 overflow-y-auto">
-          <div className="px-7 py-7 space-y-9 text-black">
+          <div className="px-5 py-6 sm:px-7 sm:py-7 space-y-8 sm:space-y-9 text-black">
             <section>
               <SectionHeading>タイマー設定 (経過時間)</SectionHeading>
               

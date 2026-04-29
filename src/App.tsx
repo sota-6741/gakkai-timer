@@ -53,14 +53,14 @@ function App() {
       {/* Settings Toggle - Floating */}
       <button
         onClick={() => setIsSidebarOpen(true)}
-        className="absolute top-8 right-8 p-3 hover:bg-white/5 rounded-lg transition-colors z-30 text-gray-400 hover:text-white cursor-pointer outline-none"
+        className="absolute top-4 right-4 sm:top-8 sm:right-8 p-3 hover:bg-white/5 rounded-lg transition-colors z-30 text-gray-400 hover:text-white cursor-pointer outline-none"
         aria-label="設定を開く"
       >
-        <Menu size={28} />
+        <Menu size={24} className="sm:w-7 sm:h-7" />
       </button>
 
       {/* Main Content Area */}
-      <main className="flex-1 relative flex flex-col items-center justify-between px-24 py-24">
+      <main className="flex-1 relative flex flex-col items-center justify-between px-6 py-12 sm:px-24 sm:py-24">
         
         {/* Background Timer - Centered in inset */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
@@ -68,18 +68,18 @@ function App() {
         </div>
 
         {/* Top Header - Speaker Info (Above Timer) */}
-        <header className="relative z-10 text-center">
-          <h1 className="text-4xl text-white mb-4 tracking-tight font-semibold">
+        <header className="relative z-10 text-center max-w-full">
+          <h1 className="text-2xl sm:text-4xl text-white mb-2 sm:mb-4 tracking-tight font-semibold line-clamp-2">
             {currentSpeaker.name}
           </h1>
-          <p className="text-2xl text-gray-400 tracking-wide font-medium">
+          <p className="text-lg sm:text-2xl text-gray-400 tracking-wide font-medium line-clamp-3">
             {currentSpeaker.title}
           </p>
         </header>
 
         {/* Bottom Area - Controls and Progress (Above Timer) */}
-        <footer className="relative z-10 w-full flex flex-col items-center gap-16">
-          <div className="w-full max-w-6xl flex justify-center">
+        <footer className="relative z-10 w-full flex flex-col items-center gap-8 sm:gap-16">
+          <div className="w-full max-w-6xl flex justify-center px-4 sm:px-0">
             <BellProgressBar
               totalTime={bellConfig.third}
               currentTime={timer.remainingSeconds}

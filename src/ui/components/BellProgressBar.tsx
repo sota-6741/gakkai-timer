@@ -19,9 +19,9 @@ function BellMarker({ position, label }: BellMarkerProps) {
       className="absolute top-0 flex flex-col items-center"
       style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
     >
-      <Bell size={18} className="text-yellow-500 fill-yellow-500" />
+      <Bell size={14} className="sm:w-[18px] sm:h-[18px] text-yellow-500 fill-yellow-500" />
       <div
-        className="mt-1 text-yellow-500/90 font-mono font-semibold text-[10px] tracking-widest uppercase"
+        className="mt-1 text-yellow-500/90 font-mono font-semibold text-[8px] sm:text-[10px] tracking-widest uppercase"
       >
         {label}
       </div>
