@@ -53,9 +53,16 @@ export function useUpdateBellConfig() {
   const configStorage = useBellConfigStorage();
   const timerStorage = useTimerStorage();
 
-  return (first: number, second: number, third: number): BellConfig => {
+  return (config: BellConfig): BellConfig => {
     // バリデーションと作成 (Domain層のルール適用)
-    const newConfig = createBellConfig(first, second, third);
+    const newConfig = createBellConfig(
+      config.first,
+      config.second,
+      config.third,
+      config.firstEnabled,
+      config.secondEnabled,
+      config.thirdEnabled,
+    );
 
     // ストレージの更新
     configStorage.updateBellConfig(newConfig);
