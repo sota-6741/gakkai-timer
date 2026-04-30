@@ -5,14 +5,34 @@ import type { BellConfig } from '../bellConfig';
 describe('Bell Domain Logic', () => {
   const config: BellConfig = {
     first: 480,  // 8分
+    firstEnabled: true,
     second: 600, // 10分
-    third: 900   // 15分
+    secondEnabled: true,
+    third: 900,  // 15分
+    thirdEnabled: true
+  };
+
+  const disabledConfig: BellConfig = {
+    ...config,
+    firstEnabled: false,
+    secondEnabled: false,
+    thirdEnabled: false
   };
 
   // --- 正常系 ---
   it('ジャスト8分経過時に1鈴を鳴らす判定になること', () => {
     const remaining = 900 - 480; // 420秒
     expect(getBellToRing(remaining, config)).toBe(BellType.FIRST);
+  });
+
+  it('ベルが無効な場合は鳴らさない判定になること', () => {
+    const remainingFirst = 900 - 480;
+    const remainingSecond = 900 - 600;
+    const remainingThird = 0;
+
+    expect(getBellToRing(remainingFirst, disabledConfig)).toBeNull();
+    expect(getBellToRing(remainingSecond, disabledConfig)).toBeNull();
+    expect(getBellToRing(remainingThird, disabledConfig)).toBeNull();
   });
 
   it('ジャスト10分経過時に2鈴を鳴らす判定になること', () => {
