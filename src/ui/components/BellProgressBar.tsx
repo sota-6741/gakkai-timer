@@ -4,16 +4,21 @@ interface BellProgressBarProps {
   totalTime: number;
   currentTime: number;
   bell1Time: number;
+  bell1Enabled: boolean;
   bell2Time: number;
+  bell2Enabled: boolean;
   bell3Time: number;
+  bell3Enabled: boolean;
 }
 
 interface BellMarkerProps {
   position: number;
   label: string;
+  enabled: boolean;
 }
 
-function BellMarker({ position, label }: BellMarkerProps) {
+function BellMarker({ position, label, enabled }: BellMarkerProps) {
+  if (!enabled) return null;
   return (
     <div
       className="absolute top-0 flex flex-col items-center"
@@ -33,16 +38,19 @@ export function BellProgressBar({
   totalTime,
   currentTime,
   bell1Time,
+  bell1Enabled,
   bell2Time,
+  bell2Enabled,
   bell3Time,
+  bell3Enabled,
 }: BellProgressBarProps) {
   const elapsed = Math.max(0, totalTime - currentTime);
   const progressPercent = Math.min(100, (elapsed / totalTime) * 100);
 
   const bells = [
-    { time: bell1Time, label: '1st' },
-    { time: bell2Time, label: '2nd' },
-    { time: bell3Time, label: '3rd' },
+    { time: bell1Time, label: '1st', enabled: bell1Enabled },
+    { time: bell2Time, label: '2nd', enabled: bell2Enabled },
+    { time: bell3Time, label: '3rd', enabled: bell3Enabled },
   ];
 
   return (
@@ -53,6 +61,7 @@ export function BellProgressBar({
             key={bell.label}
             position={(bell.time / totalTime) * 100}
             label={bell.label}
+            enabled={bell.enabled}
           />
         ))}
       </div>
@@ -63,11 +72,13 @@ export function BellProgressBar({
           style={{ width: `${progressPercent}%` }}
         />
         {bells.map((bell) => (
-          <div
-            key={bell.label}
-            className="absolute top-0 bottom-0 w-px bg-yellow-500"
-            style={{ left: `${(bell.time / totalTime) * 100}%` }}
-          />
+          bell.enabled && (
+            <div
+              key={bell.label}
+              className="absolute top-0 bottom-0 w-px bg-yellow-500"
+              style={{ left: `${(bell.time / totalTime) * 100}%` }}
+            />
+          )
         ))}
       </div>
     </div>
