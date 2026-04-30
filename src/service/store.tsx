@@ -3,6 +3,7 @@ import {
   type BellConfig,
   DEFAULT_BELL_CONFIG,
   createBellConfig,
+  getTotalDuration,
 } from "../domain/bellConfig";
 import { type Timer, reset } from "../domain/timer";
 import {
@@ -32,7 +33,9 @@ export const Provider: React.FC<{ children: React.ReactNode }> = ({
     }
   });
 
-  const [timer, setTimer] = useState<Timer>(() => reset(bellConfig.third));
+  const [timer, setTimer] = useState<Timer>(() =>
+    reset(getTotalDuration(bellConfig)),
+  );
 
   // 参加者管理の状態を追加
   const [participants, setParticipants] = useState<Participant[]>(() => {

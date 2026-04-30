@@ -84,4 +84,24 @@ describe("Store Provider (Initialization)", () => {
     expect(result.current.bellConfig.secondEnabled).toBe(true);
     expect(result.current.bellConfig.thirdEnabled).toBe(true);
   });
+
+  it("3rd bell が無効な場合、タイマーの初期時間が 2nd bell の時間になること", () => {
+    window.localStorage.setItem(
+      STORAGE_KEYS.bellConfig,
+      JSON.stringify({
+        first: 100,
+        firstEnabled: true,
+        second: 200,
+        secondEnabled: true,
+        third: 300,
+        thirdEnabled: false,
+      }),
+    );
+
+    const { result } = renderHook(() => useStore(), {
+      wrapper: ({ children }) => <Provider>{children}</Provider>,
+    });
+
+    expect(result.current.timer.remainingSeconds).toBe(200);
+  });
 });
