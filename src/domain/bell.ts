@@ -14,9 +14,9 @@ export function getBellToRing(
 ): BellType | null {
   const elapsedSeconds = config.third - remainingSeconds;
 
-  if (elapsedSeconds === config.third) return BellType.THIRD;
-  if (elapsedSeconds === config.second) return BellType.SECOND;
-  if (elapsedSeconds === config.first) return BellType.FIRST;
+  if (elapsedSeconds === config.third && config.thirdEnabled) return BellType.THIRD;
+  if (elapsedSeconds === config.second && config.secondEnabled) return BellType.SECOND;
+  if (elapsedSeconds === config.first && config.firstEnabled) return BellType.FIRST;
 
   return null;
 }
