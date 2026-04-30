@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createBellConfig } from '../bellConfig';
+import { createBellConfig, getTotalDuration } from '../bellConfig';
 
 describe('BellConfig Domain Logic', () => {
   // --- 正常系 ---
