@@ -73,14 +73,15 @@ describe("Store Provider (Initialization)", () => {
     expect(result.current.currentIndex).toBe(0);
   });
 
-  it("bellConfig が壊れている場合にデフォルト値が使われること", () => {
-    window.localStorage.setItem(STORAGE_KEYS.bellConfig, JSON.stringify({ first: 100, second: 50, third: 200 })); // 順序が不正
+  it("古い形式の bellConfig (enabledフラグなし) を読み込んだ場合、デフォルトで true になること", () => {
+    window.localStorage.setItem(STORAGE_KEYS.bellConfig, JSON.stringify({ first: 100, second: 200, third: 300 }));
     
     const { result } = renderHook(() => useStore(), { 
       wrapper: ({ children }) => <Provider>{children}</Provider> 
     });
 
-    // DEFAULT_BELL_CONFIG になるはず
-    expect(result.current.bellConfig.first).toBe(540);
+    expect(result.current.bellConfig.firstEnabled).toBe(true);
+    expect(result.current.bellConfig.secondEnabled).toBe(true);
+    expect(result.current.bellConfig.thirdEnabled).toBe(true);
   });
 });
