@@ -35,6 +35,15 @@ describe('Bell Domain Logic', () => {
     expect(getBellToRing(remainingThird, disabledConfig)).toBeNull();
   });
 
+  it('2ndが最後の有効なベルの場合、2ndの時間で終了鈴が鳴ること', () => {
+    const config2nd: BellConfig = {
+      ...config,
+      thirdEnabled: false
+    };
+    // 2ndの時間（600秒）が総時間になるので、残り0秒で2ndが鳴る
+    expect(getBellToRing(0, config2nd)).toBe(BellType.SECOND);
+  });
+
   it('ジャスト10分経過時に2鈴を鳴らす判定になること', () => {
     const remaining = 900 - 600; // 300秒
     expect(getBellToRing(remaining, config)).toBe(BellType.SECOND);

@@ -18,6 +18,32 @@ describe('BellConfig Domain Logic', () => {
     expect(config.thirdEnabled).toBe(false);
   });
 
+  it('全てのベルを無効にしようとするとエラーを投げること', () => {
+    expect(() => createBellConfig(480, 600, 900, false, false, false)).toThrow('少なくとも1つのベルを有効にしてください');
+  });
+
+  it('有効なベル間での順序が不正な場合にエラーを投げること', () => {
+    // 1st と 3rd が有効で、1st >= 3rd の場合
+    expect(() => createBellConfig(1000, 600, 900, true, false, true)).toThrow('ベルの順序が正しくありません (1st >= 3rd)');
+  });
+
+  describe('getTotalDuration', () => {
+    it('3rdが有効なら3rdの時間を返す', () => {
+      const config = createBellConfig(100, 200, 300, true, true, true);
+      expect(getTotalDuration(config)).toBe(300);
+    });
+
+    it('3rdが無効で2ndが有効なら2ndの時間を返す', () => {
+      const config = createBellConfig(100, 200, 300, true, true, false);
+      expect(getTotalDuration(config)).toBe(200);
+    });
+
+    it('1stのみ有効なら1stの時間を返す', () => {
+      const config = createBellConfig(100, 200, 300, true, false, false);
+      expect(getTotalDuration(config)).toBe(100);
+    });
+  });
+
   // --- 異常系 ---
   it('順序が逆転している（first > second）場合にエラーを投げること', () => {
     expect(() => createBellConfig(600, 480, 900)).toThrow('ベルの順序が正しくありません');
