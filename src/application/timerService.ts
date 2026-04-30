@@ -1,7 +1,7 @@
 import { tick, start, pause, reset } from "../domain/timer";
 import { getBellToRing } from "../domain/bell";
 import { createProgress } from "../domain/progress";
-import { createBellConfig } from "../domain/bellConfig";
+import { createBellConfig, getTotalDuration } from "../domain/bellConfig";
 import {
   useTimerStorage,
   useBellConfigStorage,
@@ -17,7 +17,7 @@ export function resetTimer(
   timerStorage: TimerStorageService,
   configStorage: BellConfigStorageService,
 ) {
-  timerStorage.updateTimer(reset(configStorage.bellConfig.third));
+  timerStorage.updateTimer(reset(getTotalDuration(configStorage.bellConfig)));
 }
 
 /**
@@ -68,7 +68,7 @@ export function useUpdateBellConfig() {
     configStorage.updateBellConfig(newConfig);
 
     // タイマーの設定変更を即座に反映 (タイマーのリセット)
-    timerStorage.updateTimer(reset(newConfig.third));
+    timerStorage.updateTimer(reset(getTotalDuration(newConfig)));
 
     return newConfig;
   };
@@ -89,7 +89,7 @@ export function useTickTimer() {
     const nextBase = tick(timer);
     const progress = createProgress(
       nextBase.remainingSeconds,
-      bellConfig.third,
+      getTotalDuration(bellConfig),
     );
     const bellToRing = getBellToRing(nextBase.remainingSeconds, bellConfig);
 
