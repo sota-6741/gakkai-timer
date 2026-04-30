@@ -43,7 +43,10 @@ export function SettingsSidebar({
   /**
    * 入力中の更新（ローカルステートのみ）
    */
-  const handleLocalChange = (key: keyof BellConfig, val: number) => {
+  const handleLocalChange = <K extends keyof BellConfig>(
+    key: K,
+    val: BellConfig[K],
+  ) => {
     setLocalConfig({ ...localConfig, [key]: val });
   };
 
@@ -57,6 +60,17 @@ export function SettingsSidebar({
     } catch (e) {
       if (e instanceof Error) {
         setError(e.message); // 失敗したらエラーメッセージを表示
+      }
+    }
+  };
+
+  const commitToggleChange = (newConfig: BellConfig) => {
+    try {
+      onBellConfigChange(newConfig);
+      setError(null);
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e.message);
       }
     }
   };
@@ -105,24 +119,86 @@ export function SettingsSidebar({
               )}
 
               <div className="space-y-4">
-                <TimeInput
-                  label="1st Bell"
-                  value={localConfig.first}
-                  onChange={(val) => handleLocalChange('first', val)}
-                  onBlur={commitChange}
-                />
-                <TimeInput
-                  label="2nd Bell"
-                  value={localConfig.second}
-                  onChange={(val) => handleLocalChange('second', val)}
-                  onBlur={commitChange}
-                />
-                <TimeInput
-                  label="3rd Bell"
-                  value={localConfig.third}
-                  onChange={(val) => handleLocalChange('third', val)}
-                  onBlur={commitChange}
-                />
+                <div className="flex items-end gap-3">
+                  <div className="flex-1">
+                    <TimeInput
+                      label="1st Bell"
+                      value={localConfig.first}
+                      onChange={(val) => handleLocalChange("first", val)}
+                      onBlur={commitChange}
+                    />
+                  </div>
+                  <label className="flex items-center gap-2 mb-2 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      className="w-4 h-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                      checked={localConfig.firstEnabled}
+                      onChange={(e) => {
+                        const newConfig = {
+                          ...localConfig,
+                          firstEnabled: e.target.checked,
+                        };
+                        setLocalConfig(newConfig);
+                        commitToggleChange(newConfig);
+                      }}
+                    />
+                    <span className="text-xs font-medium text-gray-600">有効</span>
+                  </label>
+                </div>
+
+                <div className="flex items-end gap-3">
+                  <div className="flex-1">
+                    <TimeInput
+                      label="2nd Bell"
+                      value={localConfig.second}
+                      onChange={(val) => handleLocalChange("second", val)}
+                      onBlur={commitChange}
+                    />
+                  </div>
+                  <label className="flex items-center gap-2 mb-2 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      className="w-4 h-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                      checked={localConfig.secondEnabled}
+                      onChange={(e) => {
+                        const newConfig = {
+                          ...localConfig,
+                          secondEnabled: e.target.checked,
+                        };
+                        setLocalConfig(newConfig);
+                        commitToggleChange(newConfig);
+                      }}
+                    />
+                    <span className="text-xs font-medium text-gray-600">有効</span>
+                  </label>
+                </div>
+
+                <div className="flex items-end gap-3">
+                  <div className="flex-1">
+                    <TimeInput
+                      label="3rd Bell"
+                      value={localConfig.third}
+                      onChange={(val) => handleLocalChange("third", val)}
+                      onBlur={commitChange}
+                    />
+                  </div>
+                  <label className="flex items-center gap-2 mb-2 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      className="w-4 h-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                      checked={localConfig.thirdEnabled}
+                      onChange={(e) => {
+                        const newConfig = {
+                          ...localConfig,
+                          thirdEnabled: e.target.checked,
+                        };
+                        setLocalConfig(newConfig);
+                        commitToggleChange(newConfig);
+                      }}
+                    />
+                    <span className="text-xs font-medium text-gray-600">有効</span>
+                  </label>
+                </div>
               </div>
             </section>
 
