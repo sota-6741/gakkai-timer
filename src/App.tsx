@@ -13,6 +13,7 @@ import { ControlButtons } from "./ui/components/ControlButtons";
 import { BellProgressBar } from "./ui/components/BellProgressBar";
 import { SettingsSidebar } from "./ui/components/SettingsSidebar";
 import { TimerStatus } from "./domain/timerStatus";
+import { getTotalDuration } from "./domain/bellConfig";
 
 import "./index.css";
 
@@ -90,7 +91,7 @@ function App() {
         >
           <div className="w-full max-w-6xl flex justify-center px-4 sm:px-0">
             <BellProgressBar
-              totalTime={bellConfig.third}
+              totalTime={getTotalDuration(bellConfig)}
               currentTime={timer.remainingSeconds}
               bell1Time={bellConfig.first}
               bell1Enabled={bellConfig.firstEnabled}
