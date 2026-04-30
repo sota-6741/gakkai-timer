@@ -93,8 +93,11 @@ function App() {
               totalTime={bellConfig.third}
               currentTime={timer.remainingSeconds}
               bell1Time={bellConfig.first}
+              bell1Enabled={bellConfig.firstEnabled}
               bell2Time={bellConfig.second}
+              bell2Enabled={bellConfig.secondEnabled}
               bell3Time={bellConfig.third}
+              bell3Enabled={bellConfig.thirdEnabled}
             />
           </div>
 
@@ -113,7 +116,7 @@ function App() {
         <SettingsSidebar
           onClose={() => setIsSidebarOpen(false)}
           bellConfig={bellConfig}
-          onBellConfigChange={(newConfig) => updateBellConfig(newConfig.first, newConfig.second, newConfig.third)}
+          onBellConfigChange={updateBellConfig}
           participants={participants}
           onImport={importParticipants}
         />
