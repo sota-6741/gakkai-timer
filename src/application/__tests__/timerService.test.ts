@@ -28,7 +28,14 @@ describe('Timer UseCase (Application Layer)', () => {
 
     // useBellConfigStorage の戻り値を設定
     (storageAdapter.useBellConfigStorage as any).mockReturnValue({
-      bellConfig: { first: 480, second: 600, third: 900 },
+      bellConfig: {
+        first: 480,
+        firstEnabled: true,
+        second: 600,
+        secondEnabled: true,
+        third: 900,
+        thirdEnabled: true,
+      },
     });
 
     // useBellPlayer の戻り値を設定
