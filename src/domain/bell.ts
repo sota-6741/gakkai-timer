@@ -1,4 +1,4 @@
-import type { BellConfig } from "./bellConfig";
+import { type BellConfig, getTotalDuration } from "./bellConfig";
 
 export const BellType = {
   FIRST: 1,
@@ -12,7 +12,8 @@ export function getBellToRing(
   remainingSeconds: number,
   config: BellConfig,
 ): BellType | null {
-  const elapsedSeconds = config.third - remainingSeconds;
+  const totalDuration = getTotalDuration(config);
+  const elapsedSeconds = totalDuration - remainingSeconds;
 
   if (elapsedSeconds === config.third && config.thirdEnabled) return BellType.THIRD;
   if (elapsedSeconds === config.second && config.secondEnabled) return BellType.SECOND;
