@@ -17,9 +17,16 @@ export const Provider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [bellConfig, setBellConfig] = useState<BellConfig>(() => {
     try {
-      const saved = loadItem(STORAGE_KEYS.bellConfig, DEFAULT_BELL_CONFIG);
+      const saved = loadItem<any>(STORAGE_KEYS.bellConfig, DEFAULT_BELL_CONFIG);
       if (saved === DEFAULT_BELL_CONFIG) return DEFAULT_BELL_CONFIG;
-      return createBellConfig(saved.first, saved.second, saved.third);
+      return createBellConfig(
+        saved.first,
+        saved.second,
+        saved.third,
+        saved.firstEnabled ?? true,
+        saved.secondEnabled ?? true,
+        saved.thirdEnabled ?? true,
+      );
     } catch {
       return DEFAULT_BELL_CONFIG;
     }
